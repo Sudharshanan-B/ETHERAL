@@ -1,29 +1,25 @@
-import React, { useState, useEffect} from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
-import Loader from "react-loader-spinner";
-import "./AccountDetails.css";
-import useBasicDetails from "../../hooks/useBasicDetails";
+import { ColorRing } from 'react-loader-spinner';
+// import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
+import './AccountDetails.css';
+import useBasicDetails from '../../hooks/useBasicDetails';
 
 const AccountDetails = () => {
-  
- 
-  const [bankingAccount,setBankingAccount]=useState(undefined)
-  const [createdDate,setCreatedDate]=useState(undefined)
-  const [loading,setLoading]=useState(true)
-  const [bankingAccountBalance,setBankingAccountBalance]=useState(undefined)
-  const [balanceAdded, setBalanceAdded] = useState("");
-  const [balanceWithdrawn, setBalanceWithdrawn] = useState("");
+  const [bankingAccount, setBankingAccount] = useState(undefined);
+  const [createdDate, setCreatedDate] = useState(undefined);
+  const [loading, setLoading] = useState(true);
+  const [bankingAccountBalance, setBankingAccountBalance] = useState(undefined);
+  const [balanceAdded, setBalanceAdded] = useState('');
+  const [balanceWithdrawn, setBalanceWithdrawn] = useState('');
 
-  
   //Use the same variable predefined after " :"
   const { id } = useParams();
 
-  const [web3,account,contract,contractAddress]=useBasicDetails()
+  const [web3, account, contract, contractAddress] = useBasicDetails();
 
- 
-  
   useEffect(() => {
     const getContractDetails = async () => {
       console.log(id);
@@ -32,7 +28,7 @@ const AccountDetails = () => {
         .call()
         .then((res) => {
           setBankingAccount(res);
-          setBankingAccountBalance(res.balance)
+          setBankingAccountBalance(res.balance);
           setCreatedDate(new Date(res.createdAt * 1000).toLocaleString());
           console.log(createdDate);
           console.log(res);
@@ -49,7 +45,7 @@ const AccountDetails = () => {
         .getContractBalance()
         .call()
         .then((res) => {
-          console.log(web3.utils.fromWei(res, "ether"));
+          console.log(web3.utils.fromWei(res, 'ether'));
         })
         .catch((err) => {
           console.log(err);
@@ -61,16 +57,16 @@ const AccountDetails = () => {
         .call()
         .then((res) => {
           console.log(account);
-          console.log(web3.utils.fromWei(res, "ether"));
+          console.log(web3.utils.fromWei(res, 'ether'));
         })
         .catch((err) => {
           console.log(err);
         });
     };
     if (
-      typeof contract !== "undefined" &&
-      typeof account !== "undefined" &&
-      typeof web3 !== "undefined"
+      typeof contract !== 'undefined' &&
+      typeof account !== 'undefined' &&
+      typeof web3 !== 'undefined'
     ) {
       console.log(contract);
       console.log(contract.options.address);
@@ -80,86 +76,31 @@ const AccountDetails = () => {
     // eslint-disable-next-line
   }, [web3, account, contract]);
 
-
-  
-
-
-
-
-
- //Function handler on adding balance
+  //Function handler on adding balance
   const addBalance = async (e) => {
     e.preventDefault();
     console.log(`${id}`);
     console.log(balanceAdded);
-    console.log("add");
+    console.log('add');
     if (
-      typeof contract !== "undefined" &&
-      typeof account !== "undefined" &&
-      typeof web3 !== "undefined"
-    ){
-
-     await contract.methods
-       .addBalance(id, web3.utils.toWei(balanceAdded, "ether"), account)
-       .send({ from: account, value: web3.utils.toWei(balanceAdded, "ether") })
-
-       .then(async (res) => {
-
-         await contract.methods
-           .accounts(id)
-           .call()
-           .then((res) => {
-             setBankingAccountBalance(res.balance);
-           })
-           .catch((err) => {
-             console.log(err);
-           });
-         console.log(res);
-       })
-       .catch((err) => {
-         console.log(err);
-       });
-    }
-  };
-
-
-
-
-
-
-
-
-
-//Function handler on withdrawing balance
-  const withdrawBalance = async (e) => {
-    e.preventDefault();
-    console.log(`${id}`);
-    console.log(balanceWithdrawn);
-    console.log("withdraw");
-    if (
-      typeof contract !== "undefined" &&
-      typeof account !== "undefined" &&
-      typeof web3 !== "undefined"
-    
-    ) 
-    
-    { 
-        console.log(contract.options.address);
-       
-
+      typeof contract !== 'undefined' &&
+      typeof account !== 'undefined' &&
+      typeof web3 !== 'undefined'
+    ) {
       await contract.methods
-        .withdrawBalance(id,web3.utils.toWei(balanceWithdrawn,'ether'), account
-        
+        .addBalance(id, web3.utils.toWei(balanceAdded, 'ether'), account)
+        .send({ from: account, value: web3.utils.toWei(balanceAdded, 'ether') })
 
-        //Here from and to is only for sending gas from our deployed account to the contract to just call the method
-        //In the contract the withdrawAmount is transferred from the contract to our specified ethereum account here
-        ).send({from:account,to:contract.options.address})
-        .then(async(res) => {
-
-           await contract.methods.accounts(id).call().then((res)=>{
-             setBankingAccountBalance(res.balance)
-           })
-           .catch((err)=>{console.log(err)})
+        .then(async (res) => {
+          await contract.methods
+            .accounts(id)
+            .call()
+            .then((res) => {
+              setBankingAccountBalance(res.balance);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
           console.log(res);
         })
         .catch((err) => {
@@ -168,17 +109,58 @@ const AccountDetails = () => {
     }
   };
 
+  //Function handler on withdrawing balance
+  const withdrawBalance = async (e) => {
+    e.preventDefault();
+    console.log(`${id}`);
+    console.log(balanceWithdrawn);
+    console.log('withdraw');
+    if (
+      typeof contract !== 'undefined' &&
+      typeof account !== 'undefined' &&
+      typeof web3 !== 'undefined'
+    ) {
+      console.log(contract.options.address);
 
+      await contract.methods
+        .withdrawBalance(
+          id,
+          web3.utils.toWei(balanceWithdrawn, 'ether'),
+          account
+
+          //Here from and to is only for sending gas from our deployed account to the contract to just call the method
+          //In the contract the withdrawAmount is transferred from the contract to our specified ethereum account here
+        )
+        .send({ from: account, to: contract.options.address })
+        .then(async (res) => {
+          await contract.methods
+            .accounts(id)
+            .call()
+            .then((res) => {
+              setBankingAccountBalance(res.balance);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
 
   if (!web3) {
     return (
       <div className="default">
-        <Loader
-          type="TailSpin"
-          color="#00BFFF"
-          height={100}
-          width={100}
-          timeout={10000} //10 secs
+        <ColorRing
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="blocks-loading"
+          wrapperStyle={{}}
+          wrapperClass="blocks-wrapper"
+          colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
         />
       </div>
     );
@@ -267,22 +249,20 @@ const AccountDetails = () => {
 
         <div className="transaction-history">
           <h1>
-            You can view your complete transaction history for this account here 
+            You can view your complete transaction history for this account here
           </h1>
-          <button className="approve-button"
-           
-           onClick={()=>{
-             window.location.href=`/transactions/${id}`
-           }}
+          <button
+            className="approve-button"
+            onClick={() => {
+              window.location.href = `/transactions/${id}`;
+            }}
           >
-          TRANSACTION HISTORY 
+            TRANSACTION HISTORY
           </button>
         </div>
       </div>
     </div>
   );
 };
-
-
 
 export default AccountDetails;

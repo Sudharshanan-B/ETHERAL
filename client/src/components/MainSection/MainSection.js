@@ -1,29 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-
-import "./MainSection.css";
-import useBasicDetails from "../../hooks/useBasicDetails";
-
+import './MainSection.css';
+import useBasicDetails from '../../hooks/useBasicDetails';
 
 const MainSection = () => {
-
   // eslint-disable-next-line
   const [storageValue, setStorageValue] = useState(undefined);
 
-  const [web3,account,contract,contractAddress]=useBasicDetails()
-
-
-
-
+  const [web3, account, contract, contractAddress] = useBasicDetails();
 
   useEffect(() => {
     const getContractDetails = async () => {};
     if (
-      typeof contract !== "undefined" &&
-      typeof account !== "undefined" &&
-      typeof web3 !== "undefined"
+      typeof contract !== 'undefined' &&
+      typeof account !== 'undefined' &&
+      typeof web3 !== 'undefined'
     ) {
-      localStorage.setItem("logged", true);
+      localStorage.setItem('logged', true);
 
       getContractDetails();
     }
@@ -46,7 +39,7 @@ const MainSection = () => {
             <button
               className="start-button"
               onClick={() => {
-                window.location = "/create";
+                window.location = '/create';
               }}
             >
               GET STARTED

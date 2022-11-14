@@ -26,42 +26,38 @@
   font-size: clamp(0.8rem, 1.5rem, 4rem);
 }
 
-
-.loan-form{
-    display:flex;
-    flex-direction: column;
-
+.loan-form {
+  display: flex;
+  flex-direction: column;
 }
 
-.loan-form-input{
-    background-color: black;
-    border-radius: 10px;
-    border:none;
-    outline: none;
-    height:50px;
-    margin:15px 0;
-    width:600px;
-    cursor: pointer;
-    color:white;
-    font-size:1.2rem;
-
+.loan-form-input {
+  background-color: black;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  height: 50px;
+  margin: 15px 0;
+  width: 600px;
+  cursor: pointer;
+  color: white;
+  font-size: 1.2rem;
 }
 
-.loan-submit-button{
-    margin: 15px 0;
-    background-color: black;
-    color:white;
-    height:40px;
-    width:160px;
-    border-radius: 10px;
-    outline: none;
-    border:none;
-    cursor: pointer;
+.loan-submit-button {
+  margin: 15px 0;
+  background-color: black;
+  color: white;
+  height: 40px;
+  width: 160px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
 
-.loan-submit-button:hover{
-    background-color: white;
-    color:black;
-    transition: 400ms;
-
+.loan-submit-button:hover {
+  background-color: white;
+  color: black;
+  transition: 400ms;
 }
