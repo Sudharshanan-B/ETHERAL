@@ -27,7 +27,14 @@
   width:100%;
   flex-direction: column;
 }
-
+.Selection select{
+    height: 40px;
+    width: 200px;
+    display: flex;
+    background-color: peachpuff;
+    font-size: large;
+    margin-left: 10px;
+}
 .transaction-bar{
 
     margin:10px;

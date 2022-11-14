@@ -1,20 +1,17 @@
-import React,{useState,useEffect} from 'react'
-import './DisplayTransactions.css'
-import { useParams } from 'react-router-dom'
+import React, { useState, useEffect } from "react";
+import "./DisplayTransactions.css";
+import { useParams } from "react-router-dom";
 
 import useBasicDetails from "../../hooks/useBasicDetails";
-
 
 const DisplayTransactions = () => {
   const { id } = useParams();
 
-  
   const [transactionHistory, setTransactionHistory] = useState([]);
   // eslint-disable-next-line
   const [loading, setLoading] = useState(true);
 
-  const [web3,account,contract,contractAddress]=useBasicDetails()
-
+  const [web3, account, contract, contractAddress] = useBasicDetails();
 
   useEffect(() => {
     const getContractDetails = async () => {
@@ -30,6 +27,9 @@ const DisplayTransactions = () => {
               console.log(res);
               var transac = transactionHistory;
               transac.push(res);
+              if (i == transactionNumber)
+                console.log("past transaction: ", res);
+
               setTransactionHistory(transac);
             }
           })
@@ -59,6 +59,15 @@ const DisplayTransactions = () => {
       <div className="account-transactions">
         <h1> TRANSACTION HISTORY</h1>
         <div className="account-transaction-bars">
+          <div className="Selection">
+            <select>
+              <option>--Select--</option>
+              <option>Past Transaction</option>
+              <option>Last 1 Month Transaction</option>
+              <option>Last 2 Month Trasaction</option>
+              <option>All Transactions</option>
+            </select>
+          </div>
           <div className="transaction-bar-header">
             <div className="col-1">
               <h1> AMT.</h1>
@@ -100,14 +109,13 @@ const DisplayTransactions = () => {
             // :null
           }
         </div>
-     
       </div>
 
       <div className="display-transaction-image">
-        <img src="/assets/6.svg" alt=""/>
+        <img src="/assets/6.svg" alt="" />
       </div>
     </div>
   );
-}
+};
 
-export default DisplayTransactions
+export default DisplayTransactions;
