@@ -17,7 +17,7 @@ const Routing = () => {
           <Route exact path="/transfer/:id" element={<TransferMoney />} />
           <Route exact path="/create" element={<CreateAccount />} />
           <Route exact path="/accounts" element={<DisplayAccounts />} />
-          <Route exact path="/accounts/:id" elements={<AccountDetails />} />
+          <Route exact path="/accounts/:id" element={<AccountDetails />} />
           <Route exact path="/loans/:id" element={<LoanTransaction />} />
           <Route
             exact
