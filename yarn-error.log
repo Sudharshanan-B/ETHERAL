@@ -1,0 +1,27 @@
+Arguments: 
+  /home/muhesh/.fnm/node-versions/v16.14.2/installation/bin/node /home/muhesh/.node/corepack/yarn/1.22.15/bin/yarn.js add truffle -g
+
+PATH: 
+  /home/muhesh/.local/bin:/run/user/1000/fnm_multishells/63231_1668443330468/bin:/run/user/1000/fnm_multishells/63195_1668443330444/bin:/home/muhesh/.fnm:/home/muhesh/.yarn/bin:/home/muhesh/.local/bin:/run/user/1000/fnm_multishells/5490_1668438569360/bin:/run/user/1000/fnm_multishells/5451_1668438569341/bin:/home/muhesh/.fnm:/home/muhesh/.local/bin:/run/user/1000/fnm_multishells/4430_1668438560885/bin:/run/user/1000/fnm_multishells/4427_1668438560867/bin:/home/muhesh/.fnm:/home/muhesh/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/games:/snap/bin:/home/muhesh/.local/share/JetBrains/Toolbox/scripts
+
+Yarn version: 
+  1.22.15
+
+Node version: 
+  16.14.2
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: getaddrinfo EAI_AGAIN registry.yarnpkg.com
+      at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:71:26)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
