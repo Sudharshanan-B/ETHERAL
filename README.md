@@ -36,6 +36,7 @@
 * Set the New RPC URL as `http://127.0.0.1:7545`
 * Set the chain id as `1337`
 * Set the Currency Symbol as `ETH`
+* Click on Save
 
 ## Running The Project
 
@@ -60,6 +61,7 @@ the localhost:
 ## Step 4 
 
 * Metamask promt Enter your Password
+* Select The network as Banking test network
 
 ## Step 5
 
