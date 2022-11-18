@@ -7,7 +7,7 @@
 
 ## Installing Ganache-Local Blockchain Network
 * Download Ganache from [here](https://trufflesuite.com/ganache/)
-* Give the Execution permission by opening terminal with the directory where you installed the file by the command:
+* Give the Execution permission by opening terminal with the directory where you downloaded the file by the command:
 
 `chmod +x Filename.AppImage` 
 
