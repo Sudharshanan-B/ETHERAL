@@ -3,7 +3,7 @@
 ## Setting up the Development Environment
 ## Pre-Requisite
 * npm or yarn must be installed
-* Any Unix Based System(Linux OS x)
+* Any Unix Based System(Linux, OS x)
 
 ## Installing Ganache-Local Blockchain Network
 * Download Ganache from [here](https://trufflesuite.com/ganache/)
